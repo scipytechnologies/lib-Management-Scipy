@@ -153,7 +153,7 @@ export const editUser = (_id, firstname, lastname, roll, email) => (dispatch) =>
       return dispatch(editUserdispatch(response));
     })
     .catch(error => {
-      alert('Your profile could not be edited\nError: ' + error.message + '\n May be someone has already registered with that Roll No. or Email');
+      alert('Your profile could not be edited\nError: ' + error.message + '\n May be someone has already registered with that ID. or Email');
     });
 };
 
@@ -391,7 +391,7 @@ export const registerUser = (creds) => (dispatch) => {
       }
     })
     .catch(error => alert(error.message + '\n' +
-      'May be someone has already registered with that username, email or Roll No.\nTry Entering a new username,email or Roll No. '))
+      'May be someone has already registered with that username, email or ID.\nTry Entering a new username,email or ID. '))
 };
 
 export const addIssue = (issue) => ({

@@ -66,7 +66,8 @@ router.post('/signup',cors.corsWithOptions, (req, res, next) => {
     firstname : req.body.firstname,
     lastname : req.body.lastname,
     email : req.body.email,
-   roll : req.body.roll }), 
+   roll : req.body.roll,
+  role : req.body.role }), 
     req.body.password, (err, user) => {
       if(err) {
         res.statusCode = 500;
@@ -113,6 +114,7 @@ router.post('/login',cors.corsWithOptions, passport.authenticate('local'), (req,
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
       res.json({success: true, status: 'Login Successful!', token: token, userinfo: req.user});
+      console.log(req.user)
     }); 
   }) (req, res, next); // function call IIFE
   });

@@ -12,8 +12,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Chirag Jain",
-  "license": "ISC",
+  "author": "Author",
+  "license": "",
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^6.2.1",
@@ -29,13 +29,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cjchirag7/lib_management.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cjchirag7/lib_management/issues"
-  },
-  "homepage": "https://github.com/cjchirag7/lib_management#readme"
+  }
 }

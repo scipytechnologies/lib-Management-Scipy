@@ -6,10 +6,13 @@ import Loading from './LoadingComponent.js';
 const fineRate = 1;
 let totalFine = 0;
 const allowedDays = 30;
-let fine = 0;
 
 
+
+// const userInfo = localStorage.getItem('userinfo') ? JSON.parse(localStorage.getItem('userinfo')) : null;
+// console.log(userInfo.role);
 function RenderIssue({ issue, i, returnBook }) {
+    let fine = 0;
     const dates = [];
     const today = new Date();
     dates.push(today);
@@ -43,11 +46,20 @@ function RenderIssue({ issue, i, returnBook }) {
     console.log('D2 ' + daysBetweenReturntoToday)
 
 
-    if (daysBetweenIssuetoReturn > allowedDays) {
+    if (daysBetweenIssuetoReturn > allowedDays) { 
+       if(issue.student.role == 'Teacher'){
+        fine = "nil"
+       }
+       else{
         fine = daysBetweenReturntoToday * fineRate;
+        totalFine = totalFine + fine
+    }
     }
 
-    totalFine = totalFine + fine
+    
+    
+
+
 
     return (
         <React.Fragment>
@@ -78,6 +90,7 @@ function RenderIssue({ issue, i, returnBook }) {
             </td>
             <td>
                 {
+                    
                     fine
                 }
             </td>
@@ -162,7 +175,7 @@ class Return extends Component {
                                     <tr>
                                         <th>S.No.</th>
                                         <th>Name of Student</th>
-                                        <th>Roll No.</th>
+                                        <th>ID</th>
                                         <th>Name of Book</th>
                                         <th>ISBN number</th>
                                         <th>Issue Date</th>

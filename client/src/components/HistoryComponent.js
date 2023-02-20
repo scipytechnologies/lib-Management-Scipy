@@ -34,11 +34,15 @@ function RenderIssue({ issue, i }) {
     const daysBetweenIssuetoReturn = DaysNo(issueDate, returnDate);
     const daysBetweenReturntoToday = DaysNo(returnDate, todayDate);
 
-    if (daysBetweenIssuetoReturn > allowedDays) {
-        fine = daysBetweenReturntoToday * fineRate;
-    }
-
-    totalFine = totalFine + fine
+    if (daysBetweenIssuetoReturn > allowedDays) { 
+        if(issue.student.role == 'Teacher'){
+         fine = "nil"
+        }
+        else{
+         fine = daysBetweenReturntoToday * fineRate;
+         totalFine = totalFine + fine
+     }
+     }
     return (
         <React.Fragment>
             <td>

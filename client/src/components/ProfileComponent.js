@@ -55,7 +55,7 @@ render(){
           <CardText>
           <h5> First Name : {'          '+this.props.auth.userinfo.firstname}</h5>
           <h5> Last Name : {'          '+this.props.auth.userinfo.lastname}</h5>
-          <h5> {(this.props.auth.userinfo.admin)?'Admin Id : ':'Roll No.'} : {'          '+this.props.auth.userinfo.roll}</h5>
+          <h5> {(this.props.auth.userinfo.admin)?'Admin Id : ':'ID.'} : {'          '+this.props.auth.userinfo.roll}</h5>
           <h5> Email : {'          '+this.props.auth.userinfo.email}</h5>
           </CardText>
           
@@ -94,7 +94,7 @@ render(){
                             minLength: ' Must be greater than 2 characters', maxLength:' Must be 20 characters or less'}}/>
                             </FormGroup>
                             <FormGroup>    
-                                 <Label htmlFor="roll">Roll No.</Label>
+                                 <Label htmlFor="roll">ID</Label>
                                 <Control.text model=".roll" id="roll" name="roll" 
                             className="form-control"  defaultValue={this.props.auth.userinfo.roll}
                             placeholder="roll" validators={{required,minLength: minLength(3),maxLength:maxLength(12)}} />

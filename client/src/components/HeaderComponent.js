@@ -240,7 +240,8 @@ class Header extends Component {
                                 email: values.email,
                                 roll: values.roll,
                                 firstname: values.firstname,
-                                lastname: values.lastname
+                                lastname: values.lastname,
+                                role : values.role
                             });
                         }}>
                             <FormGroup>
@@ -280,12 +281,27 @@ class Header extends Component {
                                 }} />
                             </FormGroup>
                             <FormGroup>
-                                <Label htmlFor="roll">Roll No.</Label>
+                                <Label htmlFor="roll">ID</Label>
                                 <Control.text model=".roll" id="roll" name="roll"
-                                    className="form-control" placeholder="roll" validators={{ required, minLength: minLength(3), maxLength: maxLength(12) }} />
+                                    className="form-control" placeholder="ID" validators={{ required, minLength: minLength(3), maxLength: maxLength(12) }} />
                                 <Errors className="text-danger" model=".roll" show="touched" messages={{
                                     required: 'Required',
                                     minLength: ' Must be greater than 2 characters', maxLength: ' Must be 12 characters or less'
+                                }} />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <Label htmlFor="role">Role</Label>
+                                <Control.select model=".role" id="role" name="role"
+                                    className="form-control" placeholder="role" validators={{ required }} >
+                                        <option />
+                                    <option value="Student">Student</option>
+                                    <option value="Teacher">Teacher</option>
+                                </Control.select>
+
+                                <Errors className="text-danger" model=".role" show="touched" messages={{
+                                    required: 'Required',
+                                    validEmail: 'Choose a Role'
                                 }} />
                             </FormGroup>
                             <FormGroup>
@@ -297,6 +313,7 @@ class Header extends Component {
                                     validEmail: ' Enter a valid email'
                                 }} />
                             </FormGroup>
+
                             <Button type="submit" value="submit" color="btn btn-primary">Sign Up</Button>
                         </LocalForm>
                     </ModalBody>

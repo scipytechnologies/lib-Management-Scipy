@@ -128,7 +128,7 @@ render(){
                     <CardTitle>
                         <h1>{this.props.users.filter((user)=>(!user.admin)).length}</h1>
                     </CardTitle>
-                    <CardText>Students registered</CardText>
+                    <CardText>Users registered</CardText>
                         <CardLink tag={Link} to="/list_students">
                             <Button color="info"><i className="fa fa-eye fa-lg"/>
                              {' '}&nbsp;View

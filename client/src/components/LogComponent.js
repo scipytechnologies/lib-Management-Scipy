@@ -20,6 +20,8 @@ function RenderIssue ({issue,i}) {
       {
         fine=Math.floor((returnDate.getTime()-issueDate.getTime())/(1000 * 60 * 60 * 24))*fineRate;
       }
+
+      
     return (
             <React.Fragment>
             <td>
@@ -53,11 +55,11 @@ function RenderIssue ({issue,i}) {
                :('Not returned yet')
                 }
             </td>
-            <td>
+            {/* <td>
                 {
                     fine
                 }
-            </td>
+            </td> */}
             </React.Fragment>
        );
 }
@@ -132,13 +134,13 @@ render(){
            <tr>
             <th>S.No.</th>
             <th>Name of Student</th>
-            <th>Roll No.</th>
+            <th>ID.</th>
             <th>Name of Book</th>
             <th>ISBN number</th>
             <th>Issue Date</th>
             <th>Return Deadline</th>
             <th>Return status</th> 
-            <th>Fine (in Rs.)</th> 
+            {/* <th>Fine (in Rs.)</th>  */}
            </tr>
         </thead>
         <tbody>

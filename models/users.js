@@ -24,6 +24,10 @@ var User = new Schema({
     admin:   {
         type: Boolean,
         default: false
+    },
+    role : {
+      type : String,
+      required : true,
     }
 });
 

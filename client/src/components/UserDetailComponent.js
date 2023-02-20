@@ -50,7 +50,7 @@ render(){
           <CardText>
           <h5> First Name : {'          '+this.props.user.firstname}</h5>
           <h5> Last Name : {'          '+this.props.user.lastname}</h5>
-          <h5> {(this.props.user.admin)?'Admin Id : ':'Roll No.'} : {'          '+this.props.user.roll}</h5>
+          <h5> {(this.props.user.admin)?'Admin Id : ':'ID'} : {'          '+this.props.user.roll}</h5>
           <h5> Email : {'          '+this.props.user.email}</h5>
           <h5> Username : {'          '+this.props.user.username}</h5>
           </CardText>
