@@ -42,7 +42,7 @@ const mapDispatchToProps = dispatch => ({
   fetchBooks: () => { dispatch(fetchBooks())},
   fetchIssues: (student) =>{ dispatch(fetchIssues(student))},
   fetchUsers: () => { dispatch(fetchUsers())},
-  postBook: (name, author, description, isbn, cat, floor, shelf, copies) => dispatch(postBook(name, author, description, isbn, cat, floor, shelf, copies)),
+  postBook: (name, author, description, isbn, cat, floor, shelf, copies,accession) => dispatch(postBook(name, author, description, isbn, cat, floor, shelf, copies ,accession)),
   editBook: (_id, name, author, description, isbn, cat, floor, shelf, copies) => dispatch(editBook(_id, name, author, description, isbn, cat, floor, shelf, copies)),
   deleteBook: (_id) =>  dispatch(deleteBook(_id)),
   loginUser: (creds) => dispatch(loginUser(creds)),
@@ -361,16 +361,11 @@ class Main extends Component {
                         <Row className="form-group">
                             <Col>
                             <Label htmlFor="cat">Category</Label>
-                            <Control.select model=".cat" id="cat" className="form-control" defaultValue={this.state.selectedBook.cat}>
-                              <option>Romance</option> <option>Technology</option>
-                              <option>Computer Science</option> <option>Management</option>
-                              <option>Electronics</option> <option>Physics</option>
-                              <option>Chemistry</option> <option>Mathematics</option>
-                              <option>Fiction</option> <option>Philosophy</option>
-                              <option>Language</option> <option>Arts</option>
-                              <option>Other</option> 
-
-                                                          </Control.select>
+                            <Control.select defaultValue="Computer Science and Engineering" model=".cat" id="cat" className="form-control">
+                              <option>Computer Science and Engineering</option> <option>Civil Engineering</option>
+                              <option>Mechanical Engineering</option> <option>Electronics and Communication Engineering</option>
+                              <option>Electrical and Electronics Engineering</option> <option>Aeronautical Engineering</option>
+                            </Control.select>
                             </Col>
                         </Row>
 
@@ -411,8 +406,8 @@ class Main extends Component {
                         </Row>
                         
                         <Row className="form-group">
-                                <Label htmlFor="shelf" md={6}> Shelf</Label>
-                                <Col md={6}>
+                                <Label htmlFor="shelf" md={1}> Shelf</Label>
+                                <Col md={5}>
                                     <Control.text model=".shelf" id="shelf" name="shelf"
                                         defaultValue={this.state.selectedBook.shelf}
                                         className="form-control"
@@ -428,6 +423,29 @@ class Main extends Component {
                                             minVal: 'Must be greater than 0',
                                             maxVal: 'Must be 100 or less',
                                             isNumber: 'Must be a number'
+                                        }}
+                                     />
+                                </Col>
+                                <Label htmlFor="accession" md={2}> Accession</Label>
+                                <Col md={4}>
+                                    <Control.text model=".accession" id="accession" name="accession"
+                                        placeholder="Accession No"
+                                        className="form-control"
+                                        validators={{
+                                            required, minLength: minLength(5), maxLength: maxLength(5), isNumber,
+                                            // uniqueAccession
+                                        }}
+                                         />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".accession"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: ' Must be 5 numbers',
+                                            maxLength: ' Must be 5 numbers ',
+                                            isNumber: ' Must be a number',
+                                            uniqueIsbn: ' There exists a book with this Accession No.'
                                         }}
                                      />
                                 </Col>

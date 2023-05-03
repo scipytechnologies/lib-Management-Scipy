@@ -26,6 +26,7 @@ class AddBook extends Component {
 
 render(){
     let uniqueIsbn=(val) =>(!this.props.books.some((book)=>(book.isbn===val)))
+    let uniqueAccession=(val) =>(!this.props.books.some((book)=>(book.accession===val)))
     let uniqueName=(val) =>(!this.props.books.some((book)=>(book.name===val)))
 
     if (this.props.booksLoading) {
@@ -59,7 +60,8 @@ render(){
     </div>
     <div className="row row-content justify-content-center">
     <LocalForm onSubmit={(values) => {
-        this.props.postBook(values.name, values.author, values.description, values.isbn, values.cat, values.floor, values.shelf, values.copies);
+        console.log(values.accession,"values");
+        this.props.postBook(values.name, values.author, values.description, values.isbn, values.cat, values.floor, values.shelf,values.copies,values.accession);
     }}>
                     <Row className="form-group">
                                 <Label htmlFor="name" md={2}>Name </Label>
@@ -109,7 +111,7 @@ render(){
                                         placeholder="ISBN no. of book"
                                         className="form-control"
                                         validators={{
-                                            required, minLength: minLength(10), maxLength: maxLength(13), isNumber,
+                                            required, minLength: minLength(13), maxLength: maxLength(13), isNumber,
                                             uniqueIsbn
                                         }}
                                          />
@@ -119,8 +121,8 @@ render(){
                                         show="touched"
                                         messages={{
                                             required: 'Required',
-                                            minLength: ' Must be greater than 9 numbers',
-                                            maxLength: ' Must be 13 numbers or less',
+                                            minLength: ' Must be 13 numbers',
+                                            maxLength: ' Must be 13 numbers ',
                                             isNumber: ' Must be a number',
                                             uniqueIsbn: ' There exists a book with this ISBN No.'
                                         }}
@@ -153,15 +155,10 @@ render(){
                         <Row className="form-group">
                             <Col>
                             <Label htmlFor="cat">Category</Label>
-                            <Control.select defaultValue="Romance" model=".cat" id="cat" className="form-control">
-                              <option>Romance</option> <option>Technology</option>
-                              <option>Computer Science</option> <option>Management</option>
-                              <option>Electronics</option> <option>Physics</option>
-                              <option>Chemistry</option> <option>Mathematics</option>
-                              <option>Fiction</option> <option>Philosophy</option>
-                              <option>Language</option> <option>Arts</option>
-                              <option>Other</option> 
-
+                            <Control.select defaultValue="Computer Science and Engineering" model=".cat" id="cat" className="form-control">
+                              <option>Computer Science and Engineering</option> <option>Civil Engineering</option>
+                              <option>Mechanical Engineering</option> <option>Electronics and Communication Engineering</option>
+                              <option>Electrical and Electronics Engineering</option> <option>Aeronautical Engineering</option>
                             </Control.select>
                             </Col>
                             <Col>
@@ -178,8 +175,8 @@ render(){
                         </Row>
                         
                         <Row className="form-group text-center justify-content-center">
-                                <Label htmlFor="shelf" md={3}> Shelf</Label>
-                                <Col md={6}>
+                                <Label htmlFor="shelf" md={1}> Shelf</Label>
+                                <Col md={5}>
                                     <Control.text model=".shelf" id="shelf" name="shelf"
                                         placeholder="Shelf no. for locating book"
                                         className="form-control"
@@ -196,6 +193,29 @@ render(){
                                             minVal: ' Must be greater than 0',
                                             maxVal: ' Must be 100 or less',
                                             isNumber: ' Must be a number'
+                                        }}
+                                     />
+                                </Col>
+                                <Label htmlFor="accession" md={2}> Accession</Label>
+                                <Col md={4}>
+                                    <Control.text model=".accession" id="accession" name="accession"
+                                        placeholder="Accession Number"
+                                        className="form-control"
+                                        validators={{
+                                            required, minLength: minLength(5), maxLength: maxLength(5), isNumber,
+                                            // uniqueAccession
+                                        }}
+                                         />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".accession"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: ' Must be 5 numbers',
+                                            maxLength: ' Must be 5 numbers ',
+                                            isNumber: ' Must be a number',
+                                            uniqueIsbn: ' There exists a book with this Accession No.'
                                         }}
                                      />
                                 </Col>

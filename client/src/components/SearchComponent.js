@@ -10,7 +10,9 @@ class Search extends Component {
         this.state={
             name: '',
             author: '',
-            cat:['Romance','Technology','Computer Science','Management','Electronics','Physics','Chemistry','Mathematics','Fiction','Philosophy','Language','Arts','Other']
+            cat:['Computer Science and Engineering','Civil Engineering',
+            'Mechanical Engineering','Electronics and Communication Engineering',
+           'Electrical and Electronics Engineering','Aeronautical Engineering']
         }
         this.onChange=this.onChange.bind(this);
     }
@@ -117,59 +119,59 @@ render(){
         <FormGroup check>
         <Row>
         <Col xs={6} md={3}>
-          <Label check for="romance">
-            <Input defaultChecked type="checkbox" onChange={this.onChange} id="romance" value="Romance" name="cat" />
-            Romance 
+          <Label check for="Computer Science and Engineering">
+            <Input defaultChecked type="checkbox" onChange={this.onChange} id="Computer Science and Engineering" value="Computer Science and Engineering" name="cat" />
+            Computer Science and Engineering
           </Label>
         </Col>
         <Col xs={6} md={3}>
-          <Label check for="fiction">
-            <Input defaultChecked type="checkbox" onChange={this.onChange} id="fiction" value="Fiction" name="cat" />
-            Fiction
+          <Label check for="Civil Engineering">
+            <Input defaultChecked type="checkbox" onChange={this.onChange} id="Civil Engineering" value="Civil Engineering" name="cat" />
+            Civil Engineering
           </Label>
           </Col>
 
           <Col xs={6} md={3}>
-          <Label check for="Arts">
-            <Input defaultChecked type="checkbox" onChange={this.onChange} id="Arts" value="Arts" name="cat" />
-            Arts
+          <Label check for="Mechanical Engineering">
+            <Input defaultChecked type="checkbox" onChange={this.onChange} id="Mechanical Engineering" value="Mechanical Engineering" name="cat" />
+            Mechanical Engineering
           </Label>
           </Col>
           <Col xs={6} md={3}>
-          <Label check for="computer">
-            <Input defaultChecked type="checkbox" onChange={this.onChange} id="computer" value="Computer Science" name="cat" />
-            Computer Science
+          <Label check for="Electronics and Communication Engineering">
+            <Input defaultChecked type="checkbox" onChange={this.onChange} id="Electronics and Communication Engineering" value="Electronics and Communication Engineering" name="cat" />
+            Electronics and Communication Engineering
           </Label>
           </Col>
           </Row>
           <Row>
         <Col xs={6} md={3}>
-          <Label check for="management">
-            <Input defaultChecked type="checkbox" onChange={this.onChange} id="management" value="Management" name="cat" />
-            Management 
+          <Label check for="Electrical and Electronics Engineering">
+            <Input defaultChecked type="checkbox" onChange={this.onChange} id="Electrical and Electronics Engineering" value="Electrical and Electronics Engineering" name="cat" />
+            Electrical and Electronics Engineering
           </Label>
         </Col>
         <Col xs={6} md={3}>
-          <Label check for="Physics">
-            <Input defaultChecked type="checkbox" onChange={this.onChange} id="Physics" value="Physics" name="cat" />
-            Physics
+          <Label check for="Aeronautical Engineering">
+            <Input defaultChecked type="checkbox" onChange={this.onChange} id="Aeronautical Engineering" value="Aeronautical Engineering" name="cat" />
+            Aeronautical Engineering
           </Label>
           </Col>
 
-          <Col xs={6} md={3}>
+          {/* <Col xs={6} md={3}>
           <Label check for="technology">
             <Input defaultChecked type="checkbox" onChange={this.onChange} id="technology" value="Technology"  name="cat" />
             Technology
           </Label>
-          </Col>
-          <Col xs={6} md={3}>
+          </Col> */}
+          {/* <Col xs={6} md={3}>
           <Label check for="Philosophy">
             <Input defaultChecked type="checkbox" onChange={this.onChange} id="Philosophy" value="Philosophy" name="cat" />
             Philosophy
           </Label>
-          </Col>
+          </Col> */}
           </Row>
-          <Row>
+          {/* <Row>
         <Col xs={6} md={3}>
           <Label check for="Mathematics">
             <Input defaultChecked type="checkbox" onChange={this.onChange} id="Mathematics" value="Mathematics" name="cat" />
@@ -195,15 +197,15 @@ render(){
             Language
           </Label>
           </Col>
-          </Row>
-          <Row>
+          </Row> */}
+          {/* <Row>
           <Col xs={6} md={3}>
           <Label check for="Other">
             <Input defaultChecked type="checkbox" onChange={this.onChange} id="Other" value="Other" name="cat" />
             Other
           </Label>
           </Col>
-        </Row>
+        </Row> */}
         </FormGroup>
         </Form>
             </div>

@@ -25,7 +25,9 @@ const bookSchema = new Schema({
     },
     cat: {
         type: String,
-        enum: ['Romance','Technology','Computer Science','Management','Electronics','Physics','Chemistry','Mathematics','Fiction','Philosophy','Language','Arts','Other'],
+        enum: ['Computer Science and Engineering','Civil Engineering',
+        'Mechanical Engineering','Electronics and Communication Engineering',
+       'Electrical and Electronics Engineering','Aeronautical Engineering'],
         required: true
     },
     copies: {
@@ -44,7 +46,12 @@ const bookSchema = new Schema({
         type: Number,
         min: 0,
         max: 8
-    }
+    },
+    accession: {
+        type: Number,
+        minlength: 5,
+        maxlength: 5
+    },
 }, {
     timestamps: true
 });

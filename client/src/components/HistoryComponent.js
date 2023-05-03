@@ -77,6 +77,7 @@ function RenderIssue({ issue, i }) {
     );
 }
 
+
 class History extends Component {
 
     constructor(props) {
@@ -135,7 +136,7 @@ class History extends Component {
                     </tr>
                 );
             });
-
+            console.log(list);
             return (
 
                 <div className="container mt-6 text-center align-self-center full">

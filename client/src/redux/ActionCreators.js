@@ -6,13 +6,17 @@ export const addBook = (book) => ({
   payload: book
 });
 
-export const postBook = (name, author, description, isbn, cat, floor, shelf, copies) => (dispatch) => {
+export const postBook = (name, author, description, isbn, cat, floor, shelf, copies, accession) => (dispatch) => {
+  console.log(accession);
   const newBook = {
     name: name, author: author,
     description: description, isbn: isbn,
     cat: cat, floor: floor,
-    shelf: shelf, copies: copies
+    shelf: shelf, copies: copies,
+    accession: accession
+    
   };
+  console.log(newBook);
   const bearer = 'Bearer ' + localStorage.getItem('token');
   return fetch(baseUrl + 'books', {
     method: "POST",
@@ -25,6 +29,7 @@ export const postBook = (name, author, description, isbn, cat, floor, shelf, cop
   })
     .then(response => {
       if (response.ok) {
+        console.log("request sent");
         return response;
       } else {
         var error = new Error('Error ' + response.status + ': ' + response.statusText);
@@ -315,6 +320,7 @@ export const loginUser = (creds) => (dispatch) => {
   })
     .then(response => {
       if (response.ok) {
+        window.location.replace('http://localhost:3000/history');
         return response;
       } else {
         var error = new Error('Error ' + response.status + ': ' + response.statusText);

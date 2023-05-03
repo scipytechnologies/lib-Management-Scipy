@@ -11,6 +11,9 @@ function RenderBook ({book, changeSelected ,isAdmin, toggleDeleteModal,toggleEdi
             {i}
             </td>
             <td>
+                {book.accession}
+            </td>
+            <td>
             <Link to={`/books/${book._id}`}>
             {book.name}
             </Link>
@@ -21,6 +24,7 @@ function RenderBook ({book, changeSelected ,isAdmin, toggleDeleteModal,toggleEdi
             <td>
                 {book.author}
             </td>
+            
             <td>
                 {book.copies}
             </td>
@@ -92,6 +96,7 @@ render(){
         <thead>
           <tr>
             <th>S.No.</th>
+            <th>Accession</th>
             <th>Name of Book</th>
             <th>ISBN number</th>
             <th>Authors</th>

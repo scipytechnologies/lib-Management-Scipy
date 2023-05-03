@@ -20,7 +20,8 @@ bookRouter.route('/')
     .catch((err)=>(next(err)))
 })
 .post(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req, res, next) => {
-    Books.create(req.body)
+   console.log(req.body); 
+   Books.create(req.body)
     .then((book)=>{
         res.statusCode=200;
         res.setHeader('Content-Type','application/json');

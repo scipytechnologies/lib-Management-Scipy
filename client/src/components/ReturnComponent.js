@@ -5,12 +5,13 @@ import Loading from './LoadingComponent.js';
 
 const fineRate = 1;
 let totalFine = 0;
-const allowedDays = 30;
+const allowedDays = 14;
 
 
 
 // const userInfo = localStorage.getItem('userinfo') ? JSON.parse(localStorage.getItem('userinfo')) : null;
 // console.log(userInfo.role);
+
 function RenderIssue({ issue, i, returnBook }) {
     let fine = 0;
     const dates = [];
@@ -18,15 +19,21 @@ function RenderIssue({ issue, i, returnBook }) {
     dates.push(today);
     const issueDate = new Date(Date.parse(issue.createdAt));
     const deadline = new Date(Date.parse(issue.createdAt));
-    deadline.setDate(deadline.getDate() + 30);
+    if(issue.student.role == 'Teacher'){
+    deadline.setDate(deadline.getDate() + 120);
+    }
+    else{
+    deadline.setDate(deadline.getDate() + 14);
+    }
     dates.push(deadline);
     // to get current date
+     console.log("deadline",dates);
     const currentDate = Date.now()
     const todayDate = new Date(currentDate)
     const returnDate = issue.returned ? new Date(Date.parse((issue.updatedAt))) : (new Date(Math.min.apply(null, dates)));
     console.log(((returnDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24)))
-    // let fine = 0;
-
+   
+    
 
     function DaysNo(date1, date2) {
         // Get the timestamps for the two dates
@@ -42,8 +49,8 @@ function RenderIssue({ issue, i, returnBook }) {
     const daysBetweenIssuetoReturn = DaysNo(issueDate, returnDate);
     const daysBetweenReturntoToday = DaysNo(returnDate, todayDate);
 
-    console.log('D1 ' + daysBetweenIssuetoReturn)
-    console.log('D2 ' + daysBetweenReturntoToday)
+    // console.log('D1 ' + daysBetweenIssuetoReturn)
+    // console.log('D2 ' + daysBetweenReturntoToday)
 
 
     if (daysBetweenIssuetoReturn > allowedDays) { 
@@ -93,7 +100,7 @@ function RenderIssue({ issue, i, returnBook }) {
                     
                     fine
                 }
-            </td>
+            </td>    
             <td>
                 <Button color="info" onClick={() => {
                     returnBook(issue._id);
@@ -152,8 +159,20 @@ class Return extends Component {
             );
         }
         else {
-            const dueIssues = this.props.issues.issues.filter((issue) => (!issue.returned));
-            const list = dueIssues.map((issue) => {
+            const dueIssues = this.props.issues.issues.filter((issue) => (!issue.returned && issue.student.role !== 'Teacher'));
+            const dueteacher = this.props.issues.issues.filter((issue) => (!issue.returned && issue.student.role == 'Teacher'));
+            // const dueTeacher = this.props.issues
+            const liststudent = dueIssues.map((issue) => {
+                return (
+                    <tr key={issue._id}>
+                        <RenderIssue issue={issue}
+                            i={this.i++}
+                            returnBook={this.props.returnIssue}
+                        />
+                    </tr>
+                );
+            });
+            const list = dueteacher.map((issue) => {
                 return (
                     <tr key={issue._id}>
                         <RenderIssue issue={issue}
@@ -169,12 +188,35 @@ class Return extends Component {
                 <div className="container mt-6 text-center align-self-center full">
                     <div className="row text-center justify-content-center">
                         <div className="col-12 heading">
-                            <h3>List of books not returned</h3>
+                            <h3>List of books not returned by Student</h3>
                             <Table striped bordered hover responsive>
                                 <thead>
                                     <tr>
                                         <th>S.No.</th>
                                         <th>Name of Student</th>
+                                        <th>ID</th>
+                                        <th>Name of Book</th>
+                                        <th>ISBN number</th>
+                                        <th>Issue Date</th>
+                                        <th>Return Deadline</th>
+                                        <th>Fine (in Rs.)</th>
+                                        <th>Return book</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {liststudent}
+                                </tbody>
+                            </Table>
+                        </div>
+                    </div>
+                    <div className="row text-center justify-content-center">
+                        <div className="col-12 heading">
+                            <h3>List of books not returned by Teacher</h3>
+                            <Table striped bordered hover responsive>
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Name of Teacher</th>
                                         <th>ID</th>
                                         <th>Name of Book</th>
                                         <th>ISBN number</th>
