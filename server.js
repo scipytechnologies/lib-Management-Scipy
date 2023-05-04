@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 // const mongoURI = require('./config/keys').mongoURI;
 
 // Connect to mongo
-mongoose.connect('mongodb+srv://srj:srj@cluster0.qcdp9uq.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://neenumariam:aiL8TFnvU7TFQinu@cluster0.6rwrgo9.mongodb.net/?retryWrites=true&w=majority')
 .then(()=> {console.log("MongoDB Connected");})
 .catch(err => console.log(err));
 

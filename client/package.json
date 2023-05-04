@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "bootstrap": "^4.3.1",
+    "date-fns": "^2.30.0",
     "font-awesome": "^4.7.0",
     "http-proxy-middleware": "^2.0.1",
     "lodash": "^4.17.21",
     "lodash.template": "^4.5.0",
+    "node-cron": "^3.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-popper": "^2.2.5",
@@ -18,7 +21,6 @@
     "reactstrap": "^8.9.0",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0"
-    
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",

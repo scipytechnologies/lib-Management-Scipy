@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState, Component } from 'react';
+
+
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Loading from './LoadingComponent.js';
+import emailjs from '@emailjs/browser';
+
 
 const fineRate = 1;
 let totalFine = 0;
@@ -19,21 +23,21 @@ function RenderIssue({ issue, i, returnBook }) {
     dates.push(today);
     const issueDate = new Date(Date.parse(issue.createdAt));
     const deadline = new Date(Date.parse(issue.createdAt));
-    if(issue.student.role == 'Teacher'){
-    deadline.setDate(deadline.getDate() + 120);
+    if (issue.student.role == 'Teacher') {
+        deadline.setDate(deadline.getDate() + 120);
     }
-    else{
-    deadline.setDate(deadline.getDate() + 14);
+    else {
+        deadline.setDate(deadline.getDate() + 14);
     }
     dates.push(deadline);
     // to get current date
-     console.log("deadline",dates);
+    console.log("deadline", dates);
     const currentDate = Date.now()
     const todayDate = new Date(currentDate)
     const returnDate = issue.returned ? new Date(Date.parse((issue.updatedAt))) : (new Date(Math.min.apply(null, dates)));
     console.log(((returnDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24)))
-   
-    
+
+
 
     function DaysNo(date1, date2) {
         // Get the timestamps for the two dates
@@ -53,21 +57,39 @@ function RenderIssue({ issue, i, returnBook }) {
     // console.log('D2 ' + daysBetweenReturntoToday)
 
 
-    if (daysBetweenIssuetoReturn > allowedDays) { 
-       if(issue.student.role == 'Teacher'){
-        fine = "nil"
-       }
-       else{
-        fine = daysBetweenReturntoToday * fineRate;
-        totalFine = totalFine + fine
+
+
+    const [currentTime, setCurrentTime] = useState(new Date());
+    if (daysBetweenIssuetoReturn > allowedDays) {
+        if (issue.student.role == 'Teacher') {
+            fine = "nil"
+        }
+        else {
+            fine = daysBetweenReturntoToday * fineRate;
+            totalFine = totalFine + fine
+        }
     }
+    if (daysBetweenIssuetoReturn > allowedDays - 7) {
+        const alertDate = deadline 
+        alertDate.setDate(alertDate.getDate() - 7);
+        console.log(alertDate,"alert");
+             
+            const templateParams = {
+                name: issue.student.firstname,
+                book: issue.book.name,
+                deadline: deadline,
+                reply_to: 'elib@gamail.com',
+                sent_to: issue.student.email
+            };
+            emailjs.send('service_zi8xgq5', 'template_ef9sgah', templateParams, 'zyP6TqtFKwl7GzVLO')
+                .then((response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                }, (err) => {
+                    console.log('FAILED...', err);
+                });
+   
+        
     }
-
-    
-    
-
-
-
     return (
         <React.Fragment>
             <td>
@@ -97,10 +119,10 @@ function RenderIssue({ issue, i, returnBook }) {
             </td>
             <td>
                 {
-                    
+
                     fine
                 }
-            </td>    
+            </td>
             <td>
                 <Button color="info" onClick={() => {
                     returnBook(issue._id);
