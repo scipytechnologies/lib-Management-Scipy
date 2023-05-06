@@ -274,10 +274,10 @@ class Header extends Component {
                             <FormGroup>
                                 <Label htmlFor="lastname">Last Name</Label>
                                 <Control.text model=".lastname" id="lastname" name="lastname"
-                                    className="form-control" placeholder="lastname" validators={{ required, minLength: minLength(3), maxLength: maxLength(20) }} />
+                                    className="form-control" placeholder="lastname" validators={{ required, minLength: minLength(1), maxLength: maxLength(20) }} />
                                 <Errors className="text-danger" model=".lastname" show="touched" messages={{
-                                    required: 'Required',
-                                    minLength: ' Must be greater than 2 characters', maxLength: ' Must be 20 characters or less'
+                                    required: '',
+                                    minLength: ' Required', maxLength: ' Must be 20 characters or less'
                                 }} />
                             </FormGroup>
                             <FormGroup>

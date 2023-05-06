@@ -10,7 +10,7 @@ export default class HomeComponent extends Component {
                     <h1 class="display-4 mb-1 " style={{color: "white"}}>Welcome To</h1>
                     <h1 class="display-1 mb-1" style={{color: "white"}}>Library Managment</h1>
                     <h1 class="display-3 mb-1" style={{color: "white"}}>Web Application</h1>
-                    <Link to='/search'><button type="button" class="btn btn-primary btn-lg mt-5">Get Started</button></Link>
+                    <Link to='/search'><button type="button" class="btn btn-primary btn-lg mt-5">Search Book</button></Link>
                 </div>
             </div>
         )
